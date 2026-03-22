@@ -1,0 +1,58 @@
+<div class="flex justify-between">
+    <div>
+        <i class="fa-solid fa-users me-1 text-blue-600"></i>
+        <span class="font-semibold">Suggested Friends</span>
+    </div>
+    <div class="bg-gray-200 size-7 rounded-2xl flex justify-center items-center">{{suggestionList.length}}</div>
+</div>
+
+<form class="max-w-md mx-auto mt-5 mb-4">   
+    <label for="search" class="block mb-2.5 text-sm font-medium text-heading sr-only ">Search friends</label>
+    <div class="relative">
+        <div class="absolute inset-y-0  flex items-center ps-3 pointer-events-none">
+            <svg class="w-4 h-4 text-body" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/></svg>
+        </div>
+        <input type="search" id="search" class="block w-full p-3 ps-9 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body" placeholder="Search" required />
+    </div>
+</form>
+
+
+@for(friend of suggestionList ; track friend){
+
+    <div class="relative mb-3 bg-neutral-primary-soft  w-full p-3 border border-default rounded-base shadow-xs">
+       
+        <div class="flex flex-col ">
+            <div class="flex gap-x-1">
+            <img class="size-10 mb-2 rounded-full border-2 border-gray-500" [src]="friend.photo" alt="Bonnie image"/>
+            <div class="p-1">
+                <p class="font-semibold tracking-tight text-heading leading-2 pt-2.5">{{friend.name}}</p>
+               
+                    @if(friend.username){
+                        <span class="text-sm  text-body ">@{{friend.username}}</span>
+                         
+                    }@else{
+                         <span class="text-sm  text-body ">Rout user</span>
+                    }
+                    
+                    
+            </div>
+            </div>
+            <div class="flex mt-3 gap-4">
+                <button
+                (click)="followFriend(friend._id)"
+                 type="button" class="inline-flex items-center text-white bg-mainColor cursor-pointer hover:bg-gray-50  hover:text-mainColor transition-all duration-75  shadow-xl font-medium leading-5 rounded-full text-sm px-4 py-2 ">
+                    @if(isLoading && currentId === friend._id){
+                         Updating...<i class="fa-solid fa-spinner fa-spin"></i> 
+                    }
+                    @else {
+                        Follow <i class="fa-solid fa-plus ms-1"></i>
+                    }
+                </button>
+                <span  class="inline-flex self-start  text-body bg-gray-50 hover:bg-neutral-tertiary-medium hover:text-heading  leading-5 rounded-full text-xs p-2 ">
+                    {{friend.followersCount}} Followers
+                </span>
+            </div>
+        </div>
+    </div>
+
+}

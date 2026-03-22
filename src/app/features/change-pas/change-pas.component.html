@@ -1,0 +1,93 @@
+<section class="flex justify-between items-center min-h-screen py-10">
+    <div class="container mx-auto 2xl:w-4xl xl:w-4xl lg:w-4xl  bg-white py-7 px-10 shadow rounded-2xl ">
+        <h2 class=" text-3xl text-center font-bold">Change Password</h2>
+        <p class="mb-8 text-center mt-3">You can create an account to connect with friends, family, and communities that include people who share your interests</p>
+        <form class="grid  gap-y-3" [formGroup]="changeForm" (ngSubmit)="submitForm()">
+            <div class="relative ">
+                <input 
+                #oldpass
+                formControlName="password"
+                 type="password"
+                id="oldpassword"
+                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-mainColor peer" placeholder=" " />
+                <label for="password" class="absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-neutral-primary px-2 peer-focus:px-2 peer-focus:text-mainColor peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                Your Password
+                </label>
+                 <span (click)="showpass(oldpass)" class="absolute top-1/2 -translate-y-1/2 end-4 cursor-pointer text-sm text-body"> 
+                    <i [class]="oldpass.type ==='password'? 'fa-eye-slash' : 'fa-eye'" class="fas"></i>
+                </span>
+               
+            </div>
+             @if(changeForm.get('Password')?.invalid && changeForm.get('Password')?.touched){
+                <div class="flex  text-xs -mt-2 text-red-600" role="alert">
+                <ul class=" list-none   ps-2.5">
+                    @if(changeForm.get('Password')?.hasError('required')){<li> Password is required </li>}
+                    @else if(changeForm.get('Password')?.hasError('pattern')){<li>password must contain at least 8 chars, upper , lower , number and spacial chars </li>}
+                </ul>
+            </div>
+            }
+
+            <div class="relative ">
+                <input 
+                #newpass
+                formControlName="newPassword"
+                 type="password"
+                id="newpassword"
+                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-mainColor peer" placeholder=" " />
+                <label for="password" class="absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-neutral-primary px-2 peer-focus:px-2 peer-focus:text-mainColor peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                New Password
+                </label>
+                 <span (click)="showpass(newpass)" class="absolute top-1/2 -translate-y-1/2 end-4 cursor-pointer text-sm text-body"> 
+                    <i [class]="newpass.type ==='password'? 'fa-eye-slash' : 'fa-eye'" class="fas"></i>
+                </span>
+               
+            </div>
+             @if(changeForm.get('newPassword')?.invalid && changeForm.get('newPassword')?.touched){
+                <div class="flex  text-xs -mt-2 text-red-600" role="alert">
+                <ul class=" list-none   ps-2.5">
+                    @if(changeForm.get('newPassword')?.hasError('required')){<li>New Password is required </li>}
+                    @else if(changeForm.get('newPassword')?.hasError('pattern')){<li>password must contain at least 8 chars, upper , lower , number and spacial chars </li>}
+                </ul>
+            </div>
+            }
+
+            <!-- <div class="relative ">
+                <input 
+                #rePass
+                formControlName="rePassword"
+                type="password"
+                id="con-pass"
+                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-mainColor peer" placeholder=" " />
+                <label for="con-pass" class="absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-neutral-primary px-2 peer-focus:px-2 peer-focus:text-mainColor peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                Confirm Password
+                </label>
+
+                <span (click)="showpass(rePass)" class="absolute top-1/2 -translate-y-1/2 end-4 cursor-pointer text-sm text-body"> 
+                    <i [class]="rePass.type ==='password'? 'fa-eye-slash' : 'fa-eye'" class="fas"></i>
+                </span>
+            </div>
+             @if(changeForm.get('rePassword')?.invalid && changeForm.get('rePassword')?.touched){
+                <div class="flex  text-xs -mt-2 text-red-600" role="alert">
+                <ul class=" list-none   ps-2.5">
+                    @if(changeForm.get('rePassword')?.hasError('required')){<li>Confirm Password is required </li>}
+                    @else if(changeForm.get('rePassword')?.hasError('mismatch')){<li>Please match your password </li>}
+                </ul>
+            </div>
+            } -->
+
+
+            <button
+            routerLink="/login"
+             type="submit"
+             class="bg-mainColor text-white  py-3 rounded-2xl cursor-pointer w-full mb-5 ">
+                Change Password
+               
+            </button>
+        </form>
+    </div>
+</section>
+
+
+
+
+ 

@@ -1,0 +1,79 @@
+
+
+<nav class="bg-neutral-primary fixed w-full z-20 top-0 start-0 border-b border-default">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2.5">
+
+
+  <a class="flex items-center space-x-3 rtl:space-x-reverse">
+        <span class="gradient-text text-3xl font-bold">Friendo</span>
+  </a>
+
+
+  <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+      <button type="button" class="flex text-sm bg-neutral-primary border-2 border-gray-500 rounded-full cursor-pointer md:me-0 focus:ring-4 focus:ring-neutral-tertiary" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+        <span class="sr-only">Open user menu</span>
+        <img class="w-9 h-9 rounded-full" [src]="userPhoto" alt="user photo">
+      </button>
+      <!-- Dropdown menu -->
+      <div class="z-50 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44" id="user-dropdown">
+        <div class="px-4 py-3 text-sm border-b border-default">
+          <span class="block text-heading font-medium">{{userName}}</span>
+        </div>
+        <ul class="p-2 text-sm text-body font-medium" aria-labelledby="user-menu-button">
+         
+          <li>
+            <a 
+            routerLink="/change"
+            routerLinkActive="bg-neutral-tertiary-medium"
+             class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading cursor-pointer mb-1.5 rounded">
+               <i class="fas fa-gear me-1"></i> Change Password
+            </a>
+          </li>
+          
+          
+          <li>
+            <a 
+            (click)="logOut()"
+             class="inline-flex items-center w-full p-2 hover:bg-red-50 cursor-pointer text-red-600 rounded">
+             <i class="fa-solid fa-arrow-right-from-bracket me-1"></i>LogOut</a>
+          </li>
+        </ul>
+      </div>
+      <button data-collapse-toggle="navbar-user" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary" aria-controls="navbar-user" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/></svg>
+      </button>
+  </div>
+  <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
+    <ul class="font-medium flex flex-col p-2 md:py-1 md:px-3 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0  md:bg-gray-50 md:shadow-2xs">
+      <li>
+        <a 
+        routerLink="/feed" 
+        routerLinkActive="text-mainColor bg-white "
+        class="block text-gray-600 py-2 px-3 rounded  md:p-1" aria-current="page">
+            <i class="fa-regular fa-house"></i> Feed
+        </a>
+      </li>
+      <li>
+        <a 
+         routerLink="/profile" 
+        routerLinkActive="text-mainColor bg-white"
+         class="block text-gray-600 py-2 px-3 rounded  md:p-1" aria-current="page">
+            <i class="fa-regular fa-user"></i> Profile
+        </a>
+      </li>
+      <li>
+        <a 
+        routerLink="/notification" 
+        routerLinkActive="text-mainColor bg-white"
+         class="block text-gray-600 py-2 px-3 rounded  md:p-1" aria-current="page">
+            <i class="fa-regular fa-comment"></i> Notification
+        </a>
+      </li>
+      
+     
+    </ul>
+  </div>
+  </div>
+</nav>
+

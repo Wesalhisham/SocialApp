@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+@import 'ngx-toastr/toastr';
+
+
+@theme {
+    --color-mainColor:#075dcd;
+    --color-secondColor:#ecf2f8;
+}
+body{
+      font-family: "SN Pro", sans-serif;
+      background: #ecf2f8;
+      overflow-x: hidden;
+      /* text-transform: capitalize; */
+}
+.gradient-text {
+  background: linear-gradient(120deg, #7B61FF, #075dcd,#7B61FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

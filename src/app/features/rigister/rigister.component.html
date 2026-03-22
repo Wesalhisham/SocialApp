@@ -1,0 +1,157 @@
+<section class="flex justify-between items-center min-h-screen py-10">
+    <div class="container mx-auto 2xl:w-4xl xl:w-4xl lg:w-4xl  bg-white py-7 px-10 shadow rounded-2xl ">
+        <h2 class=" text-3xl text-center font-bold">Getting started with Friendo</h2>
+        <p class="mb-8 text-center mt-3">You can create an account to connect with friends, family, and communities that include people who share your interests</p>
+        <form class="grid  gap-y-3" [formGroup]="rigisterForm" (ngSubmit)="submitForm()">
+            <div class="relative ">
+                <input formControlName="name"
+                type="text"
+                id="full-name"
+                class="block  pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-mainColor peer" placeholder=" " />
+                <label for="full-name" class="absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-neutral-primary px-2 peer-focus:px-2 peer-focus:text-mainColor peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                    Full Name
+                    </label>
+            </div>
+            @if(rigisterForm.get('name')?.invalid && rigisterForm.get('name')?.touched){
+                <div class="flex text-xs -mt-2 text-red-600" role="alert">
+                <ul class=" list-none ps-2.5">
+                    @if(rigisterForm.get('name')?.hasError('required')){<li>Name is required </li>}
+                    @else if(rigisterForm.get('name')?.hasError('minlength')){<li>Name must be at least 3 characters</li>}
+                </ul>
+            </div>
+            }
+
+            <div class="relative ">
+                <input formControlName="username"
+                 type="text"
+                id="user-name"
+                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-mainColor peer" placeholder=" " />
+                <label for="user-name" class="absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-neutral-primary px-2 peer-focus:px-2 peer-focus:text-mainColor peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                    User Name
+                </label>
+            </div>
+
+            <div class="relative ">
+                <input formControlName="email"
+                 type="email"
+                id="email"
+                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-mainColor peer" placeholder=" " />
+                <label for="email" class="absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-neutral-primary px-2 peer-focus:px-2 peer-focus:text-mainColor peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                Email
+                </label>
+            </div>
+             @if(rigisterForm.get('email')?.invalid && rigisterForm.get('email')?.touched){
+                <div class="flex  text-xs -mt-2 text-red-600" role="alert">
+                <ul class=" list-none   ps-2.5">
+                    @if(rigisterForm.get('email')?.hasError('required')){<li>Email is required </li>}
+                    @else if(rigisterForm.get('email')?.hasError('email')){<li>Please enter a valid email address.</li>}
+                </ul>
+            </div>
+            }
+
+            <div class="relative ">
+                <select  formControlName="gender"
+                id="gander"
+                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-mainColor peer" placeholder=" " >
+                <option value="male">male</option>
+                <option value="female">female</option>
+                </select>
+                <label for="gander" class="absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-neutral-primary px-2 peer-focus:px-2 peer-focus:text-mainColor peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                Select Gander
+                </label>
+            </div>
+            @if(rigisterForm.get('gender')?.invalid && rigisterForm.get('gender')?.touched){
+                <div class="flex  text-xs -mt-2 text-red-600" role="alert">
+                <ul class=" list-none   ps-2.5">
+                    @if(rigisterForm.get('gender')?.hasError('required')){<li>gender is required </li>}
+                </ul>
+            </div>
+            }
+            
+            <div class="relative ">
+                <input formControlName="dateOfBirth"
+                 type="date"
+                id="date"
+                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-mainColor peer" placeholder=" " />
+                <label for="date" class="absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-neutral-primary px-2 peer-focus:px-2 peer-focus:text-mainColor peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                Date
+                </label>
+            </div>
+            @if(rigisterForm.get('dateOfBirth')?.invalid && rigisterForm.get('dateOfBirth')?.touched){
+                <div class="flex  text-xs -mt-2 text-red-600" role="alert">
+                <ul class=" list-none   ps-2.5">
+                    @if(rigisterForm.get('dateOfBirth')?.hasError('required')){<li>Date is required </li>}
+                </ul>
+            </div>
+            }
+            <div class="relative ">
+                <input 
+                #pass
+                formControlName="password"
+                 type="password"
+                id="password"
+                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-mainColor peer" placeholder=" " />
+                <label for="password" class="absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-neutral-primary px-2 peer-focus:px-2 peer-focus:text-mainColor peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                Password
+                </label>
+                 <span (click)="showpass(pass)" class="absolute top-1/2 -translate-y-1/2 end-4 cursor-pointer text-sm text-body"> 
+                    <i [class]="pass.type ==='password'? 'fa-eye-slash' : 'fa-eye'" class="fas"></i>
+                </span>
+            </div>
+             @if(rigisterForm.get('password')?.invalid && rigisterForm.get('password')?.touched){
+                <div class="flex  text-xs -mt-2 text-red-600" role="alert">
+                <ul class=" list-none   ps-2.5">
+                    @if(rigisterForm.get('password')?.hasError('required')){<li>password is required </li>}
+                    @else if(rigisterForm.get('password')?.hasError('pattern')){<li>password must contain at least 8 chars, upper , lower , number and spacial chars </li>}
+                </ul>
+            </div>
+            }
+            <div class="relative ">
+                <input 
+                #rePass
+                formControlName="rePassword"
+                type="password"
+                id="con-pass"
+                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-mainColor peer" placeholder=" " />
+                <label for="con-pass" class="absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-neutral-primary px-2 peer-focus:px-2 peer-focus:text-mainColor peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                Confirm Password
+                </label>
+
+                <span (click)="showpass(rePass)" class="absolute top-1/2 -translate-y-1/2 end-4 cursor-pointer text-sm text-body"> 
+                    <i [class]="pass.type ==='password'? 'fa-eye-slash' : 'fa-eye'" class="fas"></i>
+                </span>
+            </div>
+             @if(rigisterForm.get('rePassword')?.invalid && rigisterForm.get('rePassword')?.touched){
+                <div class="flex  text-xs -mt-2 text-red-600" role="alert">
+                <ul class=" list-none   ps-2.5">
+                    @if(rigisterForm.get('rePassword')?.hasError('required')){<li>Confirm Password is required </li>}
+                    @else if(rigisterForm.get('rePassword')?.hasError('mismatch')){<li>Please match your password </li>}
+                </ul>
+            </div>
+            }
+           <div class="my-10">
+             <button type="submit"
+             class="bg-mainColor text-white  py-3 rounded-2xl cursor-pointer w-full mb-5 ">
+                Creat New Account
+                @if(isLoading){
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                }
+            </button>
+            @if (mesError) {
+                <p class="bg-red-50 text-red-600 p-3 text-center w-1/2 mx-auto">{{mesError}}</p>
+
+            }
+            
+            <button type="button" routerLink="/login" class="py-3 rounded-2xl cursor-pointer w-full hover:bg-gray-200 ">
+                I already have an account
+               
+            </button>
+           </div>
+        </form>
+    </div>
+</section>
+
+
+
+
+ 

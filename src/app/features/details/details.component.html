@@ -1,0 +1,114 @@
+<div class="container mx-auto grid xl:px-90">
+
+    <button routerLink="/feed" class="mt-20 w-fit bg-mainColor text-white rounded-2xl px-3 py-2 border-gray-300 shadow  cursor-pointer">
+        <i class="fa-solid fa-angle-left "></i>
+        Back
+    </button>
+             <div class="mt-5 bg-white rounded-2xl p-6 border-gray-300 shadow mb-5">
+            
+        <!-- user detailes -->
+     <div class="flex items-start justify-between mb-3">
+        <div class="flex items-center gap-3">
+            <img 
+            [src]="postDetails.user.photo" alt="User Photo" 
+            class="size-10 rounded-full object-cover shrink-0 border-2 border-e-gray-500">
+
+            <div>
+                <span class="text-[15px] font-semibold leading-tight cursor-pointer hover:underline">{{postDetails.user.name}}</span>
+
+                <div class="flex items-center text-[13px] text-slate-500 mt-.5 gap-1">
+                    <span class="hover:underline cursor-pointer">@{{postDetails.user.username}}</span>
+                    <span>&middot;</span>
+                    <span class="hover:underline cursor-pointer">{{postDetails.createdAt}}</span>
+                    <span>&middot;</span>
+                
+                    <div class="p-0 w-fit items-center bg-neutral-secondary-medium text-heading text-sm rounded-base focus:ring-brand-strong">
+                        
+                        <select  class="border-none bg-transparent cursor-pointer ring-0 py-0 px-2 text-xs">
+                            <option [selected]="postDetails.privacy==='public'" value="public"><i class="fa-solid fa-earth-americas me-1"></i>public</option>
+                            <option [selected]="postDetails.privacy==='folllowing'" value="folllowing"><i class="fa-solid fa-users me-1"></i>folllowing</option>
+                            <option [selected]="postDetails.privacy==='only_me'" value="only_me"><i class="fa-solid fa-lock me-1"></i>only_me</option>
+                        </select>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+
+        
+
+     
+
+     <!-- post content -->
+      <!-- //Dynamic Routing -->
+      <div class="text-[15px] cursor-pointer" >
+        @if (postDetails.body) {
+            <p class="ps-1">{{postDetails.body}}</p>
+        }
+        @if (postDetails.image) {
+            <img 
+            [src]="postDetails.image" alt="Post Photo"
+            class="w-full max-h-90 object-cover rounded shadow mt-2">
+      
+        }
+        </div>
+
+      <!-- like share comment -->
+       <div class="flex items-center justify-between text-[13px] text-slate-500 my-3 px-1">
+        <div class="flex items-center gap-1.5 cursor-pointer hover:underline">
+            <div class="w-5 h-5 rounded-full bg-mainColor text-white flex items-center justify-center text-2xs">
+                <i class="fa-solid fa-thumbs-up"></i>
+            </div>
+            <span>{{postDetails.likesCount}} Likes</span>
+        </div>
+        <div class="flex items-center gap-3">
+            <span class="cursor-pointer hover:underline">{{postDetails.sharesCount}} share</span>
+            <span class="cursor-pointer hover:underline">{{postDetails.commentsCount}} comments</span>
+            
+            
+        </div>
+       </div>
+
+        <hr class="border-t border-slate-200 mt-1">
+
+       <!-- button -> like share comment -->
+        <div class="flex items-center justify-between p-1">
+          <!-- /////////////////////////////////////////////////////problem -->
+            <button
+            
+             class="flex-1 cursor-pointer flex items-center justify-center gap-2 text-slate-500 font-semibold text-[14px] hover:bg-neutral-tertiary-medium py-2 rounded-xl">
+            
+              <i class="fa-regular fa-thumbs-up text-lg text-mainColor"></i><p class="text-mainColor">Like</p>
+            </button>
+
+            <button 
+            #el
+            class="flex-1 cursor-pointer flex items-center justify-center gap-2 text-slate-500 font-semibold text-[14px] hover:bg-neutral-tertiary-medium py-2 rounded-xl focus:text-mainColor">
+                <i class="fa-regular fa-thumbs-up text-lg"></i>Comment
+            </button>
+
+            
+    
+<button 
+
+ class="flex-1 cursor-pointer flex items-center justify-center gap-2 text-slate-500 font-semibold text-[14px] hover:bg-neutral-tertiary-medium py-2 rounded-xl focus:text-mainColor" type="button">
+  <i class="fa-regular fa-thumbs-up text-lg"></i>Share
+</button>
+
+
+        </div>
+
+        <hr class="border-t border-slate-200 mt-1">
+        
+
+        <!-- comments -->
+
+        @defer (on interaction(el)) {
+          <app-comments [postId]="postDetails.id"></app-comments>
+
+        }
+
+    </div>
+</div>
+    

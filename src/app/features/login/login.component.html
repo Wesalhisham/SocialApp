@@ -1,0 +1,88 @@
+<section class="container grid md:grid-cols-2  items-center justify-between h-full gap-y-10 px-5 py-15">
+
+    <section >
+        <div class="relative w-xl container">
+            <img src="/assets/loginphoto.png" alt="welcome"  >
+            <h1 class="gradient-text absolute top-0 text-6xl font-bold">Friendo</h1>
+        </div>
+    </section>
+
+
+   <section >
+    <div >
+         <div class=" bg-white py-7 px-10 shadow rounded-2xl w-xl">
+        <h2 class=" text-3xl text-center font-bold">Login to friendo</h2>
+        <p class="mb-8 text-center mt-3">Bring people closer. Anytime. Anywhere</p>
+
+        <form class="grid  gap-y-3" [formGroup]="loginForm" (ngSubmit)="submitForm()">
+
+             <div class="relative">
+                <input formControlName="login"
+                 type="email"
+                id="email"
+                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-mainColor peer" placeholder=" " />
+                <label for="email" class="absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-neutral-primary px-2 peer-focus:px-2 peer-focus:text-mainColor peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                Email or Username
+                </label>
+            </div>
+            @if(loginForm.get('login')?.invalid && loginForm.get('login')?.touched){
+                 <div class="flex  text-xs -mt-2 text-red-600" role="alert">
+                <ul class=" list-none   ps-2.5">
+                    @if(loginForm.get('login')?.hasError('required')){<li>The email address or username must be required </li>}
+                    @else if(loginForm.get('login')?.hasError('minlength')){<li>The email address or username must at least 3 char</li>}
+                </ul>
+            </div>
+            }
+             <div class="relative ">
+                <input 
+                #pass
+                formControlName="password"
+                 type="password"
+                id="password"
+                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-mainColor peer" placeholder=" " />
+                <label for="password" class="absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-neutral-primary px-2 peer-focus:px-2 peer-focus:text-mainColor peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                Password
+                </label>
+                 <span (click)="showpass(pass)" class="absolute top-1/2 -translate-y-1/2 end-4 cursor-pointer text-sm text-body"> 
+                    <i [class]="pass.type ==='password'? 'fa-eye-slash' : 'fa-eye'" class="fas"></i>
+                </span>
+            </div>
+            @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched){
+                <div class="flex   text-xs -mt-2 text-red-600" role="alert">
+                <ul class=" list-none   ps-2.5">
+                    @if(loginForm.get('password')?.hasError('required')){<li>password is required </li>}
+                    @else if(loginForm.get('password')?.hasError('pattern')){<li>password must contain at least 8 chars, upper , lower , number and spacial chars </li>}
+                </ul>
+            </div>
+            }
+
+            <div class="my-10">
+                 <button class="bg-mainColor text-white  py-3 rounded-2xl cursor-pointer w-full mb-5 ">
+                Login
+                @if(isLoading){
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                }
+            </button>
+            @if (mesError) {
+                <p class="bg-red-50 text-red-600 p-3 text-center w-1/2 mx-auto">{{mesError}}</p>
+
+            }
+            
+            <button type="button" class=" py-3 rounded-2xl cursor-pointer w-full hover:bg-gray-200 mb-8">
+                Did you forgit your password?
+            </button>
+            <button type="button" routerLink="/rigister" class="border border-mainColor text-mainColor  py-3 rounded-2xl cursor-pointer w-full  hover:bg-gray-200">
+                Creat new Account
+                
+            </button>
+</div>
+
+        </form>
+    </div>
+    </div>
+   </section>
+
+
+</section> 
+   
+  

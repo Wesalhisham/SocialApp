@@ -1,0 +1,214 @@
+<div class="container mx-auto mt-30 xl:px-30">
+    <div class=" bg-white rounded-3xl pb-10">
+         <!-- Cover -->
+        <div class=" h-40 w-full bg-gradient-to-r from-mainColor to-blue-800 rounded-t-3xl" >
+        <div class="relative">
+            <button class="absolute top-3 right-3 bg-gray-200 text-gray-600 px-3 py-1 rounded-md text-sm hover:bg-gray-300">Add cover</button>
+
+        </div>
+        </div>
+
+        <!-- Profile card -->
+        <div class="bg-white w-3/4 rounded-xl shadow-md mx-auto -mt-10 p-6 flex md:flex-row flex-col md:items-start md:justify-between">
+            <!-- Left: Avatar + Info -->
+            <div class=" items-center md:items-start space-x-6 md:space-x-8">
+<div class="relative">
+  <img 
+  [src]="imgUrlProfile || profileList?.photo || 'assets/default-avatar.png'" 
+    alt="avatar" 
+    class="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover">
+
+  <!-- زرار الكاميرا -->
+  <button 
+    type="button"
+    (click)="fileInput.click()"
+    class="bg-mainColor rounded-full px-2 py-1 text-white cursor-pointer absolute bottom-0 ">
+    <i class="fa-regular fa-camera"></i>
+  </button>
+
+  <!-- input مخفي -->
+  <input 
+    #fileInput
+    (change)="uploadPhoto($event)"
+    type="file" 
+    accept="image/*"
+    class="hidden" />
+</div>
+                <div class="flex flex-col justify-center md:justify-start mt-2">
+                    <h1 class="text-2xl font-bold text-gray-900">{{profileList.name}}</h1>
+                    <p class="text-gray-500">@{{profileList.username}}</p>
+
+                    <div class="mt-4 text-gray-600">
+                        <p class="flex items-center gap-2"><svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884l8 4.5a1 1 0 0 0 .994 0l8-4.5A1 1 0 0 0 18 5H2a1 1 0 0 0-.997.884z"/><path d="M18 8.118l-8 4.5-8-4.5V14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8.118z"/></svg> {{profileList.email}}</p>
+                        <p class="flex items-center gap-2 mt-1"><svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11H9v4h2V7zm0 6H9v2h2v-2z" clip-rule="evenodd"/></svg> Active on Route Posts</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Stats -->
+            <div class="mt-6 md:mt-0 grid grid-cols-3 gap-4 text-center md:text-left">
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <p class="text-gray-500 text-sm">FOLLOWERS</p>
+                    <p class="text-xl font-bold text-gray-900">{{profileList.followersCount}}</p>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <p class="text-gray-500 text-sm">FOLLOWING</p>
+                    <p class="text-xl font-bold text-gray-900">{{profileList.followingCount}}</p>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <p class="text-gray-500 text-sm">BOOKMARKS</p>
+                    <p class="text-xl font-bold text-gray-900">{{profileList.bookmarksCount}}</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-4 col-span-1 md:col-span-3 mt-4">
+                    <p class="text-gray-500 text-sm">MY POSTS</p>
+                    <p class="text-xl font-bold text-gray-900">{{postList.length}}</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-4 col-span-1 md:col-span-3">
+                    <p class="text-gray-500 text-sm">SAVED POSTS</p>
+                    <p class="text-xl font-bold text-gray-900">{{profileList.bookmarksCount}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-slate-200 bg-white p-3 mt-10 shadow-sm">
+        <div class="grid w-full grid-cols-2 gap-2 rounded-xl bg-slate-100 p-1.5 sm:inline-flex sm:w-auto sm:gap-0">
+            <button (click)="postButton()" class="inline-flex items-center justify-center gap-4 me-4 rounded-lg px-4 py-2 text-sm font-bold transition focus:bg-white focus:text-[#1877f2] focus:shadow-sm cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text" aria-hidden="true">
+                    <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path>
+                    <path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M10 9H8"></path>
+                    <path d="M16 13H8"></path><path d="M16 17H8"></path>
+                </svg>
+                My Posts
+            </button>
+
+                    
+            
+            <button (click)="bookmarkButton()" class="inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-bold transition text-slate-600 hover:text-slate-900  focus:bg-white focus:text-[#1877f2] focus:shadow-sm cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark" aria-hidden="true">
+                    <path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z"></path>
+                </svg>
+                Saved
+            </button>
+
+        </div>
+    </div>
+
+
+    @if(bookmark){
+        @for (post of boomarksList; track post.id) {
+            <div class=" bg-white rounded-2xl p-6 border-gray-300 shadow my-5">
+            
+        <!-- user detailes -->
+     <div class="flex  items-start justify-between mb-3">
+        <div class="flex items-center gap-3">
+            <img 
+            [src]="post.user.photo" alt="User Photo" 
+            class="size-10 rounded-full object-cover shrink-0 border-2 border-e-gray-500">
+
+            <div>
+                <span class="text-[15px] font-semibold leading-tight cursor-pointer hover:underline">{{post.user.name}}</span>
+
+                <div class="flex items-center text-[13px] text-slate-500 mt-.5 gap-1">
+                    <span class="hover:underline cursor-pointer">@{{post.user.username}}</span>
+                    <span>&middot;</span>
+                </div>
+            </div>
+        </div>
+     </div>
+
+
+     <!-- post content -->
+      <!-- //Dynamic Routing -->
+      <div class="text-[15px] cursor-pointer" >
+        @if (post.body) {
+            <p class="ps-1">{{post.body}}</p>
+        }
+        @if (post.image) {
+            <img 
+            [src]="post.image" alt="Post Photo"
+            class="w-full max-h-90 object-cover rounded shadow mt-2">
+      
+        }
+        </div>
+
+      <!-- like share comment -->
+       <div class="flex items-center justify-between text-[13px] text-slate-500 my-3 px-1">
+        <div class="flex items-center gap-1.5 cursor-pointer hover:underline">
+           
+            <span>{{post.likesCount}} Likes</span>
+        </div>
+        <div class="flex items-center gap-3">
+            <span class="cursor-pointer hover:underline">{{post.sharesCount}} share</span>
+            <span class="cursor-pointer hover:underline">{{post.commentsCount}} comments</span>
+            
+           
+        </div>
+       </div>
+
+    </div>
+
+        }
+    }
+
+    @if(post){
+        @for (post of postList; track post.id) {
+            <div class=" bg-white rounded-2xl p-6 border-gray-300 shadow my-5">
+            
+        <!-- user detailes -->
+     <div class="flex  items-start justify-between mb-3">
+        <div class="flex items-center gap-3">
+            <img 
+            [src]="post.user.photo" alt="User Photo" 
+            class="size-10 rounded-full object-cover shrink-0 border-2 border-e-gray-500">
+
+            <div>
+                <span class="text-[15px] font-semibold leading-tight cursor-pointer hover:underline">{{post.user.name}}</span>
+
+                <div class="flex items-center text-[13px] text-slate-500 mt-.5 gap-1">
+                    <span class="hover:underline cursor-pointer">@{{post.user.username}}</span>
+                    <span>&middot;</span>
+                </div>
+            </div>
+        </div>
+     </div>
+
+
+     <!-- post content -->
+      <!-- //Dynamic Routing -->
+      <div class="text-[15px] cursor-pointer" >
+        @if (post.body) {
+            <p class="ps-1">{{post.body}}</p>
+        }
+        @if (post.image) {
+            <img 
+            [src]="post.image" alt="Post Photo"
+            class="w-full max-h-90 object-cover rounded shadow mt-2">
+      
+        }
+        </div>
+
+      <!-- like share comment -->
+       <div class="flex items-center justify-between text-[13px] text-slate-500 my-3 px-1">
+        <div class="flex items-center gap-1.5 cursor-pointer hover:underline">
+           
+            <span>{{post.likesCount}} Likes</span>
+        </div>
+        <div class="flex items-center gap-3">
+            <span class="cursor-pointer hover:underline">{{post.sharesCount}} share</span>
+            <span class="cursor-pointer hover:underline">{{post.commentsCount}} comments</span>
+            
+           
+        </div>
+       </div>
+
+    </div>
+
+        }
+    }
+
+    
+
+  
