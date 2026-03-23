@@ -17,8 +17,10 @@
     "@angular/platform-browser": "^20.3.16",
     "@angular/platform-browser-dynamic": "^20.3.16",
     "@angular/router": "^20.3.16",
-    "ngx-toastr": "^14.2.0",
-    "ngx-spinner": "^15.0.0",
+    "@fortawesome/fontawesome-free": "^7.2.0",
+    "flowbite": "^4.0.1",
+    "ngx-spinner": "^21.1.0",
+    "ngx-toastr": "^20.0.5",
     "rxjs": "^7.8.0",
     "zone.js": "~0.13.0"
   },
