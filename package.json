@@ -1,28 +1,40 @@
 {
   "name": "social-app",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
   "dependencies": {
-    "@angular/animations": "^20.3.16",
-    "@angular/common": "^20.3.16",
-    "@angular/compiler": "^20.3.16",
-    "@angular/core": "^20.3.16",
-    "@angular/forms": "^20.3.16",
-    "@angular/platform-browser": "^20.3.16",
-    "@angular/platform-browser-dynamic": "^20.3.16",
-    "@angular/router": "^20.3.16",
+    "@angular/common": "^20.3.0",
+    "@angular/compiler": "^20.3.0",
+    "@angular/core": "^20.3.0",
+    "@angular/forms": "^20.3.0",
+    "@angular/platform-browser": "^20.3.0",
+    "@angular/router": "^20.3.0",
     "@fortawesome/fontawesome-free": "^7.2.0",
     "flowbite": "^4.0.1",
-    "ngx-spinner": "^21.1.0",
-    "ngx-toastr": "^20.0.5",
-    "rxjs": "^7.8.0",
-    "zone.js": "~0.13.0"
+    "ngx-spinner": "^21.0.0",
+    "ngx-toastr": "^14.3.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
     "@angular/build": "^20.3.14",
@@ -41,9 +53,5 @@
     "sass": "^1.97.3",
     "tailwindcss": "^4.2.0",
     "typescript": "~5.9.2"
-  },
-  "engines": {
-    "node": "20.x",
-    "npm": "10.x"
   }
 }

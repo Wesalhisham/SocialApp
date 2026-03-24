@@ -1,7 +1,8 @@
 import { ApplicationConfig, importProvidersFrom, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withHashLocation, withInMemoryScrolling, withViewTransitions } from '@angular/router';
-import { provideToastr } from 'ngx-toastr';
 import { routes } from './app.routes';
+import { ToastrModule } from 'ngx-toastr';
+
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { headerInterceptor } from './core/interceptors/header-interceptor';
 import { errorInterceptor } from './core/interceptors/error-interceptor';
@@ -17,8 +18,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes , withInMemoryScrolling({scrollPositionRestoration:'top'}) , withViewTransitions() , withHashLocation()),
     // provideHttpClient(withFetch() , withInterceptors([headerInterceptor , errorInterceptor , loadingInterceptor]) ), //httpclient , all interceptors
     provideHttpClient(withFetch() , withInterceptors([headerInterceptor , errorInterceptor ]) ), //httpclient , interceptors
-
-     provideToastr(), //  ngx toster package
+ importProvidersFrom(ToastrModule.forRoot()),
+    
 
      //privide module  -> ngx-spinner
      importProvidersFrom( BrowserAnimationsModule, NgxSpinnerModule )
